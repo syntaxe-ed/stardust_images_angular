@@ -1,0 +1,26 @@
+.container-fluid {
+    display: flex;
+}
+
+.aboutRow {
+	justify-content: center;
+	align-self: center;
+}
+
+.aboutPhoto{
+	text-align: center;
+	align-self: center;
+}
+
+.aboutText {
+	text-align: center;
+	align-self: center;
+}
+
+.aboutImage {
+	height: 70vh;
+}
+
+.row {
+    min-height: calc(100vh - 110px);
+}
