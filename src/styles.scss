@@ -2,3 +2,13 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+@font-face {
+    font-family: 'Bradley Hand ITC';
+    src: url(assets/fonts/bradhitc.ttf) format("opentype");
+  }
+
+div {
+    font-family: 'Bradley Hand ITC';
+    max-height: calc(100vh - 110px);
+}

@@ -1,1 +1,24 @@
-<p>navigation-bar works!</p>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="'/'">
+            <img
+						width="80"
+						height="60"
+						src='../../../assets/stardust_images.png'
+						alt="logo"
+					/>
+        </a>
+
+        <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <a class="nav-link" [routerLink]="'/about'" (click)="isMenuCollapsed = true">About</a>
+                <a class="nav-link" [routerLink]="'/gallery'" (click)="isMenuCollapsed = true">Gallery</a>
+                <a class="nav-link" [routerLink]="'/gifts'" (click)="isMenuCollapsed = true">Gifts</a>
+                <a class="nav-link" [href]="'https://stardustimagesblog.wordpress.com/'">Blog</a>
+            </ul>
+        </div>
+
+    </div>
+</nav>
