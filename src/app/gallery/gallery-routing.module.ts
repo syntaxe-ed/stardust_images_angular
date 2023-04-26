@@ -6,6 +6,18 @@ const routes: Routes = [
     {
         path: '',
         component: GalleryComponent
+    },
+    {
+        path: ':galleryTitle',
+        component: GalleryComponent
+    },
+    {
+        path: ':galleryTitle/:subGalleryTitle',
+        component: GalleryComponent
+    },
+    {
+        path: ':galleryTitle/:subGalleryTitle/:pageTitle',
+        component: GalleryComponent
     }
 ];
 

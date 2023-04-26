@@ -1,1 +1,21 @@
-<p>gallery works!</p>
+<div class="container-fluid">
+    <div *ngIf="galleryPages.length > 0" class="row galleryRow">
+        <div class="col col-sm-12 col-lg-4" *ngFor="let image of galleryPages">
+            <div class="imageCard">
+                <a [routerLink]="image.title.toLowerCase()">
+                    <img src="../../assets/landingpage/Events.jpg" class="imageCardImage img-" />
+                    <h1 class="imageCardText">{{image.title}}</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="height: 20vh">
+        <div class="col col-sm-12 col-lg-2" *ngFor="let image of images">
+            <div class="galleryCard">
+                <img class="galleryCardImage" [src]=image.image alt="{{image}}">
+              </div>
+        </div>
+      </div>
+</div>
