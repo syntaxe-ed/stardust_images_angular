@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GalleryComponent } from './gallery.component';
 import { GalleryRoutingModule } from './gallery-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     GalleryRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ]
 })
 export class GalleryModule { }

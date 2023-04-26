@@ -5,13 +5,15 @@ import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { OrderByAspectRatioPipe } from './pipes/order-by-aspect-ratio.pipe';
 
 
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
-    FooterComponent
+    FooterComponent,
+    OrderByAspectRatioPipe
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   exports: [
     NavigationBarComponent,
-    FooterComponent
+    FooterComponent,
+    OrderByAspectRatioPipe
   ]
 })
 export class SharedModule { }

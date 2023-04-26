@@ -10,12 +10,11 @@
         </div>
     </div>
 
+    <ul class="image-gallery">
+        <li *ngFor="let image of images">
+            <img class="img-fluid" [src]=image.image alt="{{image}}">
+            <div class="overlay"><span>{{image.title}}</span></div>
+        </li>
+    </ul>
 
-    <div class="row" style="height: 20vh">
-        <div class="col col-sm-12 col-lg-2" *ngFor="let image of images">
-            <div class="galleryCard">
-                <img class="galleryCardImage" [src]=image.image alt="{{image}}">
-              </div>
-        </div>
-      </div>
 </div>
