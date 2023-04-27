@@ -5,13 +5,14 @@
                 <a [routerLink]="image.title.toLowerCase()">
                     <img src="../../assets/landingpage/Events.jpg" class="imageCardImage img-" />
                     <h1 class="imageCardText">{{image.title}}</h1>
+                    <div class="overlay"><span></span></div>
                 </a>
             </div>
         </div>
     </div>
 
-    <ul class="image-gallery">
-        <li *ngFor="let image of images">
+    <ul *ngIf="galleryPages.length === 0" class="image-gallery">
+        <li *ngFor="let image of imagesService.images, let i = index" (click)="open(i)">
             <img class="img-fluid" [src]=image.image alt="{{image}}">
             <div class="overlay"><span>{{image.title}}</span></div>
         </li>

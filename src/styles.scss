@@ -11,3 +11,57 @@
 div {
     font-family: 'Bradley Hand ITC';
 }
+
+.imageModal {
+  // .modal-dialog, .modal-content, .modal-body, .carousel-container {
+  //   // max-height: 90vh;
+  //   // max-width: 100%;
+  // }
+  
+  // .carousel-container {
+  //   // max-height: 90vh;
+  //   // max-width: 100%;
+  // }
+
+  // img {
+  //   max-height: calc(90vh - 32px);
+  // }
+
+.carousel-container {
+  background-color: transparent;
+}
+
+  .modal-dialog {
+    max-width: max-content !important;
+    background-color: transparent;
+  }
+  
+  .modal-body {
+    display: flex;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .modal-backdrop {
+    background-color: transparent;
+ }
+  
+  .modal-body img {
+    object-fit: contain;
+    max-height: 90vh;
+    border-radius: 5px;
+  }
+
+  .carousel-item {
+    transition: opacity 0.7s ease !important;
+    position: absolute !important;
+    display: block !important;
+    opacity: 0;
+  }
+
+  .carousel-item.active {
+    position: relative !important;
+    opacity: 1;
+  }
+
+}

@@ -1,0 +1,7 @@
+<div class="modal-body">
+    <ngb-carousel [animation]="false" class="carousel-container" [interval]="0" [keyboard]="true" [activeId]="index.toString()">
+        <ng-template ngbSlide *ngFor="let image of imageService.images">
+            <img [src]=image.image alt="{{image.title}}">
+        </ng-template>
+    </ngb-carousel>
+</div>

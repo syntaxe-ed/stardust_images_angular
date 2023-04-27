@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
-import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapse, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { OrderByAspectRatioPipe } from './pipes/order-by-aspect-ratio.pipe';
+import { ImageModalComponent } from './image-modal/image-modal.component';
+import { ImageService } from './services/image.service';
 
 
 
@@ -13,18 +14,19 @@ import { OrderByAspectRatioPipe } from './pipes/order-by-aspect-ratio.pipe';
   declarations: [
     NavigationBarComponent,
     FooterComponent,
-    OrderByAspectRatioPipe
+    ImageModalComponent,
   ],
+  providers: [ImageService],
   imports: [
     CommonModule,
     NgbCollapse,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   exports: [
     NavigationBarComponent,
-    FooterComponent,
-    OrderByAspectRatioPipe
+    FooterComponent
   ]
 })
 export class SharedModule { }

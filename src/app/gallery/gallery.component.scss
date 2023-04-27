@@ -1,137 +1,135 @@
 .imageCard {
-	padding-top: 2%;
-	padding-bottom: 2%;
-	text-align: center;
-	vertical-align: middle;
-	position: relative;
-    cursor: pointer;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
 }
 
 .imageCard:hover {
-	opacity: 0.4;
+  opacity: 0.4;
 }
 
 .imageCardText {
-	font-family: 'Bradley Hand ITC';
-	font-weight: bold;
-	padding: 10px;
-	outline: none;
+  font-family: 'Bradley Hand ITC';
+  font-weight: bold;
+  padding: 10px;
+  outline: none;
 }
 
 .imageCardImage {
-	width: 100%;
-    border-radius: 5px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .container-fluid {
-    min-height: calc(100vh - 130px);
-    padding-bottom: 30px;
-    display: flex;
+  min-height: calc(100vh - 130px);
+  padding-bottom: 30px;
+  display: flex;
 }
 
 .col {
-    height: 100%;
-    margin: auto;
+  height: 100%;
+  margin: auto;
 }
 
 a {
-    text-decoration: none;
-    color: black;
-	font-weight: bold;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
-  }
-  
-  .grid-item {
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 10px;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
 
-  .galleryRow {
-    display: flex;
-    margin:auto;
-  }
+.grid-item {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-  .galleryCol {
-    margin: auto;
-  }
+.galleryRow {
+  display: flex;
+  margin: auto;
+}
 
-  .galleryCard {
-	max-width: 100%;
-	padding-top: 0.75%;
-	padding-bottom: 0.75%;
-	display: flex;
+.galleryCol {
+  margin: auto;
+}
+
+.galleryCard {
+  max-width: 100%;
+  padding-top: 0.75%;
+  padding-bottom: 0.75%;
+  display: flex;
 }
 
 .galleryCard:hover {
-	opacity: 0.4;
-	cursor: pointer;
+  transform: scale(1);
 }
 
 .galleryCardImage {
-	/* max-width: 100%; */
-    padding: 5px;
-	height: 20vh;
-    margin: auto;
+  /* max-width: 100%; */
+  padding: 5px;
+  height: 20vh;
+  margin: auto;
 }
 
 /* Styling taken from https://blog.logrocket.com/responsive-image-gallery-css-flexbox/*/
 
 ul {
-    list-style: none;
-  }
-
-/* Responsive image gallery rules begin*/
+  list-style: none;
+}
 
 .image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .image-gallery > li {
-    flex: 1 1 auto; /* or flex: auto; */
-    height: 300px;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .image-gallery::after {
-    content: "";
-    flex-grow: 999;
-  }
-  
-  .image-gallery li img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    border-radius: 5px;
-  }
-  
-  .overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(57, 57, 57, 0.502);
-    top: 0;
-    left: 0;
-    transform: scale(0);
-    transition: all 0.2s 0.1s ease-in-out;
-    color: #fff;
-    border-radius: 5px;
-    /* center overlay content */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* hover */
-  .image-gallery li:hover .overlay {
-    transform: scale(1);
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image-gallery>li {
+  flex: 1 1 auto;
+  /* or flex: auto; */
+  height: 300px;
+  cursor: pointer;
+  position: relative;
+}
+
+.image-gallery::after {
+  content: "";
+  flex-grow: 999;
+}
+
+.image-gallery li img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  border-radius: 5px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(57, 57, 57, 0.502);
+  top: 0;
+  left: 0;
+  transform: scale(0);
+  transition: all 0.2s 0.1s ease-in-out;
+  color: #fff;
+  border-radius: 5px;
+  /* center overlay content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* hover */
+.image-gallery li:hover .overlay {
+  transform: scale(1);
+}
