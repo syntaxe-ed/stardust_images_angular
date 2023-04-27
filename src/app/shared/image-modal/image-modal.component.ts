@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from '../services/image.service';
 
@@ -8,7 +8,13 @@ import { ImageService } from '../services/image.service';
   styleUrls: ['./image-modal.component.scss']
 })
 export class ImageModalComponent {
-  index: number = 0;
+  imageIndex: string = '';
 
-  constructor(public imageService: ImageService) {}
+  ngOnInit() {
+    console.log(this.imageIndex);
+  }
+
+  constructor(public imageService: ImageService) {
+    
+  }
 }

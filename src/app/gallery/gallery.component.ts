@@ -43,12 +43,12 @@ export class GalleryComponent {
     }
   }
 
-  open(image: any) {
+  open(index: number) {
       const modalRef = this.modalService.open(ImageModalComponent, {
         ariaLabelledBy: 'modal-basic-title', 
         windowClass: 'imageModal'
     });
-      modalRef.componentInstance.image = image.index;
+      modalRef.componentInstance.imageIndex = `slide-ngb-slide-${index}`;
   }
 
   private readBase64(file: any): Promise<any> {
@@ -76,7 +76,7 @@ export class GalleryComponent {
   private getGalleryImages(title: string) {
     this.http.get(`${environment.apiUrl}items/galleryPages?limit=-1`).subscribe((pages: any) => {
       const stringToCompare = title.split('%20').join(' ');
-      const id = pages.data.find((l: any) => l.title.toLowerCase() === stringToCompare).id;
+      const id = pages.data.find((l: any) => l.title.toLowerCase() === stringToCompare)?.id;
       this.http.get(`${environment.apiUrl}items/photos?filter[galleryPage][id][_eq]=${id}`).subscribe((images: any) => {
         images.data.forEach((i: any) => {
           this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
