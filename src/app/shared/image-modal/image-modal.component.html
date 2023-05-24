@@ -1,5 +1,5 @@
 <div class="modal-body">
-    <ngb-carousel [animation]="false" class="carousel-container" [interval]="0" [keyboard]="true" [activeId]="imageIndex">
+    <ngb-carousel [animation]="false" [showNavigationIndicators]="false" class="carousel-container" [interval]="0" [keyboard]="true" [activeId]="imageIndex">
         <ng-template id="slide-ngb-slide-{{i}}" ngbSlide *ngFor="let image of imageService.images, let i = index">
             <img [src]=image.image alt="{{image.title}}">
         </ng-template>

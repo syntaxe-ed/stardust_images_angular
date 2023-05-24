@@ -35,7 +35,7 @@ div {
     max-width: max-content !important;
     background-color: transparent;
   }
-  
+
   .modal-body {
     display: flex;
     padding: 0;
@@ -62,6 +62,13 @@ div {
   .carousel-item.active {
     position: relative !important;
     opacity: 1;
+    outline: none;
+    border: none;
   }
+
+  .carousel-item:focus, .modal-body:focus, .modal-dialog:focus, .modal-content:focus, img:focus, .carousel-item, .modal-body, .modal-dialog, .modal-cotent, .img {
+    outline: none;
+    border: none;
+}
 
 }

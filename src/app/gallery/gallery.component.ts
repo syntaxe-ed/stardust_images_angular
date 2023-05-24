@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { ImageModalComponent } from '../shared/image-modal/image-modal.component';
@@ -30,8 +30,6 @@ export class GalleryComponent {
   ngOnInit() {
     this.galleryPages = [];
     this.imagesService.images = [];
-    const reader = new FileReader();
-
 
     const titles = this.router.url.split('/');
     const title = titles[titles.length - 1].toLowerCase();
