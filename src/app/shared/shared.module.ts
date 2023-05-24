@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { ImageService } from './services/image.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -22,7 +23,9 @@ import { ImageService } from './services/image.service';
     NgbCollapse,
     RouterModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [
     NavigationBarComponent,

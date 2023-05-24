@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'gifts',
     loadChildren: () => import('./gifts/gifts.module').then(m => m.GiftsModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then(m => m.SearchModule)
   }
 ];
 

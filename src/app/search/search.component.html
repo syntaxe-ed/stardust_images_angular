@@ -1,0 +1,8 @@
+<div class="container-fluid">
+    <ul *ngIf="galleryPages.length === 0" class="image-gallery">
+        <li *ngFor="let image of imagesService.images, let i = index" (click)="open(i)">
+            <img class="img-fluid" [src]=image.image alt="{{image}}">
+            <div class="overlay"><span>{{image.title}}</span></div>
+        </li>
+    </ul>
+</div>
