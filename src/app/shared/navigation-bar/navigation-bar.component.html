@@ -20,5 +20,11 @@
             </ul>
         </div>
 
+        <form [formGroup]="searchForm">
+            <div class="ml-auto">
+                <input formControlName="search" class="form-control" placeholder="Search" />
+            </div>
+        </form>
+    
     </div>
 </nav>
