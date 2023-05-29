@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import packageJson from '../../../../package.json'
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +12,5 @@ export class FooterComponent {
   instagram = faInstagram;
   facebook = faFacebook;
   window = window;
+  version = packageJson.version;
 }
