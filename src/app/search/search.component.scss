@@ -60,3 +60,12 @@ ul {
   .image-gallery li:hover .overlay {
     transform: scale(1);
   }
+
+  h1 {
+    margin: auto;
+  }
+
+  .no-results {
+    width: 100%;
+    display: flex;
+  }

@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchComponent {
   pageTitle: string | null = null;
-  galleryPages: any[] = [];
   images: any[] = [];
   pages: string[] = [];
 
