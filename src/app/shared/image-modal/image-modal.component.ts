@@ -23,7 +23,7 @@ export class ImageModalComponent {
   async onClick(image: any) {
     this.modalRef = this.modalService.open(AddToCartComponent, {
       ariaLabelledBy: 'modal-basic-title', 
-      windowClass: 'imageModal'
+      centered: true
     });
     this.modalRef.componentInstance.image = image;
     this.modalRef.componentInstance.addToCartEvent.subscribe(() => {

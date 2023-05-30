@@ -1,16 +1,37 @@
 <div class="modal-body">
-    <div class="card">
+    <!-- <div class="card"> -->
         <div class="card-body">
-
-            <button class="btn btn-light snipcart-add-item" (click)="onAdd()"
-            [attr.data-id]="1"   
-            [attr.data-item-id]="1"
-            [attr.data-item-price]="1"
-            [attr.data-item-url]="'/'"
-            [attr.data-item-image]="image.rawImage"
-            [attr.data-item-name]="image.title">
-                Add to Cart
-            </button>
+            <form [formGroup]="optionsForm">
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <select formControlName="size" class="form-control" id="size">
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="material">Material</label>
+                    <select formControlName="material" class="form-control" id="material">
+                        <option value="Canvas">Canvas</option>
+                        <option value="Print">Print</option>
+                    </select>
+                </div>
+                <button [disabled]="optionsForm.invalid" type="submit" class="btn btn-secondary snipcart-add-item" (click)="onAdd()"  
+                [attr.data-item-id]="image.title"
+                [attr.data-item-price]="0"
+                [attr.data-item-url]="'/'"
+                [attr.data-item-image]="image.rawImage"
+                [attr.data-item-name]="image.title"
+                [attr.data-item-custom1-name]="'Size'"
+                [attr.data-item-custom1-options]="'Small|Medium|Large'"
+                [attr.data-item-custom1-value]="optionsForm.controls.size.value"
+                [attr.data-item-custom2-name]="'Material'"
+                [attr.data-item-custom2-options]="'Canvas|Print'"
+                [attr.data-item-custom2-value]="optionsForm.controls.material.value">
+                    Add to Cart
+                </button>
+        </form>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
