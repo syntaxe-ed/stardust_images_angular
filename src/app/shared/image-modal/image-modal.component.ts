@@ -1,6 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from '../services/image.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddToCartComponent } from '../add-to-cart/add-to-cart.component';
 
 @Component({
   selector: 'app-image-modal',
@@ -9,12 +11,23 @@ import { ImageService } from '../services/image.service';
 })
 export class ImageModalComponent {
   imageIndex: string = '';
+  modalRef: any;
 
   ngOnInit() {
-    console.log(this.imageIndex);
   }
 
-  constructor(public imageService: ImageService) {
+  constructor(public imageService: ImageService, private modalService: NgbModal) {
     
+  }
+
+  async onClick(image: any) {
+    this.modalRef = this.modalService.open(AddToCartComponent, {
+      ariaLabelledBy: 'modal-basic-title', 
+      windowClass: 'imageModal'
+    });
+    this.modalRef.componentInstance.image = image;
+    this.modalRef.componentInstance.addToCartEvent.subscribe(() => {
+      this.modalRef.close();
+    })
   }
 }

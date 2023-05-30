@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ImageModalComponent } from './image-modal/image-modal.component';
 import { ImageService } from './services/image.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 
 
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavigationBarComponent,
     FooterComponent,
     ImageModalComponent,
+    AddToCartComponent,
   ],
   providers: [ImageService],
   imports: [
