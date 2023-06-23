@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SearchComponent {
   pageTitle: string | null = null;
-  images: any[] = [];
   pages: string[] = [];
 
 
@@ -70,6 +69,7 @@ export class SearchComponent {
     this.http.get(`${environment.apiUrl}items/photos?filter[keywords][_contains]=${stringToCompare}`).subscribe((images: any) => {
       images.data.forEach((i: any) => {
         this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
+          console.log(file)
           this.imagesService.images.push({
             title: i.photoName,
             image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file))
