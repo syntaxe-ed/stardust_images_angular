@@ -6,3 +6,12 @@ button {
 .form-group {
     margin-bottom: 10px;
 }
+
+.price-group {
+    display: flex;
+    margin-top: 5px;
+
+    .price {
+        margin: auto;
+    }
+}
