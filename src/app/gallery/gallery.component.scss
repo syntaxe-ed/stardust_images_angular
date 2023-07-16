@@ -23,6 +23,12 @@
   border-radius: 5px;
 }
 
+@media (min-width: 992px) {
+  .imageCardImage {
+      object-fit: cover;
+  }
+}
+
 .container-fluid {
   min-height: calc(100vh - 130px);
   padding-bottom: 30px;

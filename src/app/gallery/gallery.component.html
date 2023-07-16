@@ -3,7 +3,7 @@
         <div class="col col-sm-12 col-lg-4" *ngFor="let image of galleryPages">
             <div class="imageCard">
                 <a [routerLink]="image.title.toLowerCase()">
-                    <img src="../../assets/landingpage/Events.jpg" class="imageCardImage img-" />
+                    <img [src]="image.thumbnail" class="imageCardImage img-" />
                     <h1 class="imageCardText">{{image.title}}</h1>
                     <div class="overlay"><span></span></div>
                 </a>

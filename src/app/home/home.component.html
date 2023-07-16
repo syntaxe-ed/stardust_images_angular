@@ -1,13 +1,7 @@
 <div class="container-fluid">
     <ngb-carousel [pauseOnHover]="false" [pauseOnFocus]="false">
-        <ng-template ngbSlide>
-            <img class="CarouselImage" src='../../assets/landingpage/DSC_0063.jpg'/>
-        </ng-template>
-        <ng-template ngbSlide>
-            <img class="CarouselImage" src='../../assets/landingpage/Events.jpg'/>
-        </ng-template>
-        <ng-template ngbSlide>
-            <img class="CarouselImage" src='../../assets/landingpage/Landscapes.jpg'/>
+        <ng-template ngbSlide *ngFor="let image of images">
+            <img class="CarouselImage" [src]="image.image"/>
         </ng-template>
     </ngb-carousel>
 </div>
