@@ -17,6 +17,8 @@ export class AddToCartComponent {
   materials: any = [];
   sizes: any = [];
   prices: any = [];
+  environment = environment;
+  snipcartUrl = `${environment.apiUrl}snipcart`;
 
   optionsForm = new FormGroup({
     size: new FormControl(null, [Validators.required]),
@@ -78,5 +80,9 @@ export class AddToCartComponent {
 
   getCurrentSize() {
     return this.sizes.filter((s: any) => +s.id === +this.optionsForm.controls.size.value!).size;
+  }
+
+  getCurrentPrice() {
+    return this.prices.filter((p: any) => +p.size === +this.optionsForm.controls.size.value! && +p.material === +this.optionsForm.controls.material.value!)[0]
   }
 }
