@@ -1,0 +1,32 @@
+<div class="modal-body">
+    <!-- <div class="card"> -->
+        <div class="card-body">
+            <form [formGroup]="optionsForm">
+                <div class="form-group">
+                    <label for="material">Material</label>
+                    <select formControlName="material" class="form-control" id="material">
+                        <option [value]="material.id" *ngFor="let material of materials">{{capitaliseFirstLetter(material.material)}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="size">Size</label>
+                    <input *ngIf="!optionsForm.controls.material.value" readonly class="form-control" />
+                    <select *ngIf="!!optionsForm.controls.material.value" formControlName="size" class="form-control" id="size">
+                        <option *ngFor="let size of getSizes()" [value]="size.id">{{size.size}}</option>
+                    </select>
+                </div>
+                <button [disabled]="optionsForm.invalid" type="submit" class="btn btn-secondary snipcart-add-item" (click)="onAdd()"  
+                [attr.data-item-id]="'1'"
+                [attr.data-item-price]="0"
+                [attr.data-item-url]="snipcartUrl"
+                [attr.data-item-image]="image.rawImage"
+                [attr.data-item-name]="getImageTitle(image)"
+                [attr.data-item-custom1-name]="'Size'"
+                [attr.data-item-custom1-options]="getSizesForSnipcart()"
+                [attr.data-item-custom1-value]="getCurrentSize()">
+                    Add to Cart
+                </button>
+        </form>
+        </div>
+    <!-- </div> -->
+</div>

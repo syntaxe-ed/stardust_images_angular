@@ -80,7 +80,8 @@ export class GalleryComponent {
           this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
             this.imagesService.images.push({
               title: i.photoName,
-              image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file))
+              image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+              rawImage: await this.readBase64(file)
             })
           })
         })

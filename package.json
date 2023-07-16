@@ -1,6 +1,6 @@
 {
   "name": "stardust-images",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

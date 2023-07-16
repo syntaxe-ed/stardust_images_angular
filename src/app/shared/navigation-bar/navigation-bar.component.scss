@@ -1,3 +1,18 @@
 a {
     font-weight: bold;
 }
+
+.cart-container {
+    margin-left: 10px;
+    display: flex;
+
+    .snipcart-items-count {
+        position: absolute;
+        bottom: 10px;
+        right: 5px;
+    }
+}
+
+.navbar {
+    margin-bottom: 10px;
+}
