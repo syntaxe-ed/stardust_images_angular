@@ -3,32 +3,27 @@
         <div class="card-body">
             <form [formGroup]="optionsForm">
                 <div class="form-group">
-                    <label for="size">Size</label>
-                    <select formControlName="size" class="form-control" id="size">
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
+                    <label for="material">Material</label>
+                    <select formControlName="material" class="form-control" id="material">
+                        <option [value]="material.id" *ngFor="let material of materials">{{capitaliseFirstLetter(material.material)}}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="material">Material</label>
-                    <select formControlName="material" class="form-control" id="material">
-                        <option value="Canvas">Canvas</option>
-                        <option value="Print">Print</option>
+                    <label for="size">Size</label>
+                    <input *ngIf="!optionsForm.controls.material.value" readonly class="form-control" />
+                    <select *ngIf="!!optionsForm.controls.material.value" formControlName="size" class="form-control" id="size">
+                        <option *ngFor="let size of getSizes()" [value]="size.id">{{size.size}}</option>
                     </select>
                 </div>
                 <button [disabled]="optionsForm.invalid" type="submit" class="btn btn-secondary snipcart-add-item" (click)="onAdd()"  
-                [attr.data-item-id]="image.title"
+                [attr.data-item-id]="getImageTitle(image)"
                 [attr.data-item-price]="0"
                 [attr.data-item-url]="'/'"
                 [attr.data-item-image]="image.rawImage"
-                [attr.data-item-name]="image.title"
+                [attr.data-item-name]="getImageTitle(image)"
                 [attr.data-item-custom1-name]="'Size'"
-                [attr.data-item-custom1-options]="'Small|Medium|Large'"
-                [attr.data-item-custom1-value]="optionsForm.controls.size.value"
-                [attr.data-item-custom2-name]="'Material'"
-                [attr.data-item-custom2-options]="'Canvas|Print'"
-                [attr.data-item-custom2-value]="optionsForm.controls.material.value">
+                [attr.data-item-custom1-options]="getSizesForSnipcart()"
+                [attr.data-item-custom1-value]="getCurrentSize()">
                     Add to Cart
                 </button>
         </form>
