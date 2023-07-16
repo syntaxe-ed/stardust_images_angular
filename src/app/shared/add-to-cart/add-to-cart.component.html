@@ -1,7 +1,7 @@
 <div class="modal-body">
     <!-- <div class="card"> -->
         <div class="card-body">
-            <form [formGroup]="optionsForm">
+            <form [formGroup]="optionsForm" *ngIf="!image.price">
                 <div class="form-group">
                     <label for="material">Material</label>
                     <select formControlName="material" class="form-control" id="material">
@@ -16,7 +16,7 @@
                     </select>
                 </div>
                 <button [disabled]="optionsForm.invalid" type="submit" class="btn btn-secondary snipcart-add-item" (click)="onAdd()"  
-                [attr.data-item-id]="'1'"
+                [attr.data-item-id]="'id'"
                 [attr.data-item-price]="0"
                 [attr.data-item-url]="snipcartUrl"
                 [attr.data-item-image]="image.rawImage"
@@ -27,6 +27,14 @@
                     Add to Cart
                 </button>
         </form>
+        <button *ngIf="!!image.price" type="submit" class="btn btn-secondary snipcart-add-item" (click)="onAdd()"  
+                [attr.data-item-id]="image.id"
+                [attr.data-item-price]="image.price"
+                [attr.data-item-url]="snipcartUrl + '/' + image.id"
+                [attr.data-item-image]="image.rawImage"
+                [attr.data-item-name]="image.title">
+                    Add to Cart
+                </button>
         </div>
     <!-- </div> -->
 </div>

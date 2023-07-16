@@ -1,1 +1,21 @@
-<p>gifts works!</p>
+<div class="container-fluid">
+    <div *ngIf="title === 'gifts'" class="row galleryRow">
+        <div class="col col-sm-12 col-lg-4" *ngFor="let image of categories">
+            <div class="imageCard">
+                <a [routerLink]="image.title.toLowerCase()">
+                    <img src="../../assets/landingpage/Events.jpg" class="imageCardImage img-" />
+                    <h1 class="imageCardText">{{image.title}}</h1>
+                    <div class="overlay"><span></span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <ul *ngIf="title !== 'gifts'" class="image-gallery">
+        <li *ngFor="let image of imagesService.images, let i = index" (click)="open(i)">
+            <img class="img-fluid" [src]=image.image alt="{{image}}">
+            <div class="overlay"><span>{{image.title}}</span></div>
+        </li>
+    </ul>
+
+</div>
