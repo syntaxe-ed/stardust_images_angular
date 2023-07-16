@@ -79,7 +79,7 @@ export class AddToCartComponent {
   }
 
   getCurrentSize() {
-    return this.sizes.filter((s: any) => +s.id === +this.optionsForm.controls.size.value!).size;
+    return this.sizes.filter((s: any) => +s.id === +this.optionsForm.controls.size.value!)[0]?.size;
   }
 
   getCurrentPrice() {
