@@ -67,7 +67,19 @@ export class GalleryComponent {
   private getGalleryPages(title: string) {
     this.http.get(`${environment.apiUrl}items/galleryPages?limit=-1`).subscribe((pages: any) => {
       const stringToCompare = title.split('%20').join(' ');
-      this.galleryPages = pages.data.filter((l: any) => l.parentPage.toLowerCase() === stringToCompare);
+      const galleryPages = pages.data.filter((l: any) => l.parentPage.toLowerCase() === stringToCompare);
+      galleryPages.forEach((p: any) => {
+        this.http.get(`${environment.apiUrl}assets/${p.thumbnail}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
+          this.galleryPages.push({
+            id: p.id,
+            parentPage: p.parentPage,
+            password: p.password,
+            thumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+            rawImage: await this.readBase64(file),
+            title: p.title
+          })
+        })
+      })
     })
   }
 

@@ -67,7 +67,17 @@ export class GiftsComponent {
 
   private getProductCategories(title: string) {
     this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`).subscribe((pages: any) => {
-      this.categories = pages.data;
+      const categories = pages.data;
+      categories.forEach((p: any) => {
+        this.http.get(`${environment.apiUrl}assets/${p.thumbnail}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
+          this.categories.push({
+            id: p.id,
+            thumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+            rawImage: await this.readBase64(file),
+            title: p.title
+          })
+        })
+      })
     })
   }
 
