@@ -21,6 +21,13 @@
   .imageCardImage {
     width: 100%;
     border-radius: 5px;
+	// object-position: 0 100%;
+  }
+
+  @media (min-width: 992px) {
+    .imageCardImage {
+        object-fit: cover;
+    }
   }
   
   .container-fluid {
