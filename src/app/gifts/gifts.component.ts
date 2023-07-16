@@ -73,7 +73,7 @@ export class GiftsComponent {
 
   private getGalleryImages(title: string) {
     this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`).subscribe((pages: any) => {
-      const stringToCompare = title.split('%20').join(' ');
+      const stringToCompare = title.split('%20').join(' ').toLowerCase();
       if (stringToCompare === 'all') {
         this.getAllProducts();
       } else {
@@ -99,9 +99,8 @@ export class GiftsComponent {
   }
 
   private getFilteredProducts(pages: any, stringToCompare: string) {
-    console.log(pages)
     const id = pages.data.find((l: any) => l.title.toLowerCase() === stringToCompare)?.id;
-    this.http.get(`${environment.apiUrl}items/products?[category][id][_eq]=${id}`).subscribe((products: any) => {
+    this.http.get(`${environment.apiUrl}items/products?filter[category][_eq]=${id}`).subscribe((products: any) => {
       products.data.forEach((i: any) => {
         this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
           this.imagesService.images.push({
