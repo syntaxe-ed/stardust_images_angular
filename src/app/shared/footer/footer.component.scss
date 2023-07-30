@@ -3,6 +3,7 @@ footer {
 	font-style: italic;
     font-weight: bold;
     width: 100vw;
+	// max-height: 46px !important;
     padding: 10px;
     text-align: center;
 }
@@ -35,7 +36,14 @@ footer {
 }
 
 .copyright {
-	font-size: x-large;
+	display: inline-Flex;
+	transform: translateY(10px) translateX(-5px);
+	font-size: xx-large;
 	font-weight: normal;
+	// height: 20px !important;
 	// font-family: 'Times New Roman', Times, serif
+}
+
+.copyright-container {
+	transform: translateY(-10px);
 }

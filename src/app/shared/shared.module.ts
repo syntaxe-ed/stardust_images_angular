@@ -9,6 +9,7 @@ import { ImageModalComponent } from './image-modal/image-modal.component';
 import { ImageService } from './services/image.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -18,6 +19,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     FooterComponent,
     ImageModalComponent,
     AddToCartComponent,
+    ErrorComponent,
   ],
   providers: [ImageService],
   imports: [
