@@ -4,22 +4,19 @@ footer {
     font-weight: bold;
     width: 100vw;
 	// max-height: 46px !important;
-    padding: 10px;
+    padding-top: 10px;
     text-align: center;
 }
 
 .facebook {
-	float: left;
-	margin-left: 40%;
-	margin-top: 2px;
+	margin-right: 10px;
 	size: large;
     color: grey;
 }
 
 .instagram {
+	margin-left: 10px;
 	float: right;
-	margin-right: 40%;
-	margin-top: 2px;
     color: grey;
 }
 
@@ -37,13 +34,21 @@ footer {
 
 .copyright {
 	display: inline-Flex;
-	transform: translateY(10px) translateX(-5px);
+	// transform: translateY(20px) translateX(-7px);
 	font-size: xx-large;
 	font-weight: normal;
 	// height: 20px !important;
 	// font-family: 'Times New Roman', Times, serif
 }
 
-.copyright-container {
-	transform: translateY(-10px);
+// .copyright-container {
+// 	transform: translateY(-10px);
+// }
+
+.text {
+	margin: auto;
+}
+
+.col-text {
+	display: flex;
 }
