@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageModalComponent } from '../shared/image-modal/image-modal.component';
 import { ImageService } from '../shared/services/image.service';
 import { environment } from 'src/environments/environment';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +16,7 @@ import { environment } from 'src/environments/environment';
 export class SearchComponent {
   pageTitle: string | null = null;
   pages: string[] = [];
+  loading = true;
 
 
   constructor(private route: ActivatedRoute, private http: HttpClient, 
@@ -23,19 +25,20 @@ export class SearchComponent {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.imagesService.images = [];
     const searchTerm = this.route.snapshot.paramMap.get('searchTerm');
-    this.getGalleryImages(searchTerm!);
+    await this.getGalleryImages(searchTerm!);
 
-    this.router.events.subscribe((value) => {
+    this.router.events.subscribe(async (value) => {
       // @ts-ignore
       if (value.type && value.type === 1) {
         const searchTerm = this.route.snapshot.paramMap.get('searchTerm');
         this.imagesService.images = [];
-        this.getGalleryImages(searchTerm!);
+        await this.getGalleryImages(searchTerm!);
       }
     })
+    this.loading = false;
   }
 
 
@@ -64,18 +67,14 @@ export class SearchComponent {
   }
 
 
-  private getGalleryImages(searchTerm: string) {
-
+  private async getGalleryImages(searchTerm: string) {
     const stringToCompare = searchTerm.split('%20').join(' ');
-    this.http.get(`${environment.apiUrl}items/photos?filter[keywords][_contains]=${stringToCompare}`).subscribe((images: any) => {
-      images.data.forEach((i: any) => {
-        this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
-          console.log(file)
-          this.imagesService.images.push({
-            title: i.photoName,
-            image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file))
-          })
-        })
+    const images: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/photos?filter[keywords][_contains]=${stringToCompare}`));
+    images.data.forEach(async (i: any) => {
+      const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }))
+      this.imagesService.images.push({
+        title: i.photoName,
+        image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file))
       })
     })
   }

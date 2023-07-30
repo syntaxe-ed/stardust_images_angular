@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading" class="container-fluid">
     <div *ngIf="title === 'gifts'" class="row galleryRow">
         <div class="col col-sm-12 col-lg-4 col-12" *ngFor="let image of categories">
             <div class="imageCard">

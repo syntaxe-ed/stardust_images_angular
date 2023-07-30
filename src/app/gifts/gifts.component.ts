@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageService } from '../shared/services/image.service';
 import { ImageModalComponent } from '../shared/image-modal/image-modal.component';
 import { environment } from 'src/environments/environment';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-gifts',
@@ -21,6 +22,7 @@ export class GiftsComponent {
   images: any[] = [];
   pages: string[] = [];
   title: string = '';
+  loading = true;
 
 
   constructor(private route: ActivatedRoute, private http: HttpClient, 
@@ -28,18 +30,19 @@ export class GiftsComponent {
     private modalService: NgbModal, public imagesService: ImageService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.categories = [];
     this.imagesService.images = [];
 
     const titles = this.router.url.split('/');
     this.title = titles[titles.length - 1].toLowerCase();
 
-    this.getProductCategories(this.title);
+    await this.getProductCategories(this.title);
 
     if (this.title !== 'gifts') {
-      this.getGalleryImages(this.title);
+      await this.getGalleryImages(this.title);
     }
+    this.loading = false;
   }
 
   open(index: number) {
@@ -66,62 +69,55 @@ export class GiftsComponent {
     return future;
   }
 
-  private getProductCategories(title: string) {
-    this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`).subscribe((pages: any) => {
-      const categories = pages.data;
-      categories.forEach((p: any) => {
-        this.http.get(`${environment.apiUrl}assets/${p.thumbnail}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
-          this.categories.push({
-            id: p.id,
-            thumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
-            rawImage: await this.readBase64(file),
-            title: p.title
-          })
-        })
+  private async getProductCategories(title: string) {
+    const pages: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`));
+    const categories = pages.data;
+    categories.forEach(async (p: any) => {
+      const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${p.thumbnail}?quality=50`, { responseType: 'blob' }));
+      this.categories.push({
+        id: p.id,
+        thumbnail: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+        rawImage: await this.readBase64(file),
+        title: p.title
       })
     })
   }
 
-  private getGalleryImages(title: string) {
-    this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`).subscribe((pages: any) => {
-      const stringToCompare = title.split('%20').join(' ').toLowerCase();
+  private async getGalleryImages(title: string) {
+    const pages = await lastValueFrom(this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`));
+    const stringToCompare = title.split('%20').join(' ').toLowerCase();
       if (stringToCompare === 'all') {
-        this.getAllProducts();
+        await this.getAllProducts();
       } else {
-        this.getFilteredProducts(pages, stringToCompare);
+        await this.getFilteredProducts(pages, stringToCompare);
       }
-    })
   }
 
-  private getAllProducts() {
-    this.http.get(`${environment.apiUrl}items/products?limit=-1`).subscribe((products: any) => {
-      products.data.forEach((i: any) => {
-        this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
-          this.imagesService.images.push({
-            id: i.id,
-            title: i.name,
-            image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
-            rawImage: await this.readBase64(file),
-            price: i.price
-          })
-        })
+  private async getAllProducts() {
+    const products: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/products?limit=-1`));
+    products.data.forEach(async (i: any) => {
+      const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }));
+      this.imagesService.images.push({
+        id: i.id,
+        title: i.name,
+        image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+        rawImage: await this.readBase64(file),
+        price: i.price
       })
     })
   }
 
-  private getFilteredProducts(pages: any, stringToCompare: string) {
+  private async getFilteredProducts(pages: any, stringToCompare: string) {
     const id = pages.data.find((l: any) => l.title.toLowerCase() === stringToCompare)?.id;
-    this.http.get(`${environment.apiUrl}items/products?filter[category][_eq]=${id}`).subscribe((products: any) => {
-      products.data.forEach((i: any) => {
-        this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
-          this.imagesService.images.push({
-            id: i.id,
-            title: i.name,
-            image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
-            rawImage: await this.readBase64(file),
-            price: i.price
-          })
-        })
+    const products: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/products?filter[category][_eq]=${id}`));
+    products.data.forEach(async (i: any) => {
+      const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${i.photo}?quality=50`, { responseType: 'blob' }));
+      this.imagesService.images.push({
+        id: i.id,
+        title: i.name,
+        image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+        rawImage: await this.readBase64(file),
+        price: i.price
       })
     })
   }

@@ -1,4 +1,5 @@
-<div #container id="container" class="container-fluid">
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading" #container id="container" class="container-fluid">
         <ngb-carousel [pauseOnHover]="false" [pauseOnFocus]="false">
             <ng-template ngbSlide *ngFor="let image of images">
                 <img class="CarouselImage" [src]="image.image" [style.height.px]="getContainerHeight()"/>

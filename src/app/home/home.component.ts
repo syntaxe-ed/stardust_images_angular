@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class HomeComponent {
   images: any[] = [];
   imageHeight = 0;
-  @Output() eventEmitter = new EventEmitter<any>();
+  loading = true;
   @ViewChild('container') elementRef: ElementRef | undefined;
   constructor(private http: HttpClient, private sanitizer: DomSanitizer, private changeDetector: ChangeDetectorRef) {
     this.getLandingPageImages();
@@ -56,10 +56,12 @@ export class HomeComponent {
   const newImages: any[] = [];
    const images: any =  await lastValueFrom(this.http.get(`${environment.apiUrl}items/landingPage?limit=-1`)).catch(() => {
     this.images = oldImages;
+    this.loading = false;
    });
    images.data.forEach(async (p: any) => {
     const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${p.image}?quality=50`, { responseType: 'blob' })).catch(() => {
       this.images = oldImages;
+      this.loading = false;
     })
     newImages.push({
       id: p.id,
@@ -68,5 +70,6 @@ export class HomeComponent {
     })
     })
     this.images = newImages;
+    this.loading = false;
   }
 }

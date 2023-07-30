@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading" class="container-fluid">
     <div *ngIf="galleryPages.length > 0" class="row galleryRow">
         <div class="col col-12 col-sm-12 col-lg-4" *ngFor="let image of galleryPages">
             <div class="imageCard">

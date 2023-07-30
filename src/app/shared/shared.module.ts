@@ -10,6 +10,7 @@ import { ImageService } from './services/image.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ErrorComponent } from './error/error.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 
@@ -20,6 +21,7 @@ import { ErrorComponent } from './error/error.component';
     ImageModalComponent,
     AddToCartComponent,
     ErrorComponent,
+    LoadingSpinnerComponent,
   ],
   providers: [ImageService],
   imports: [
@@ -33,7 +35,8 @@ import { ErrorComponent } from './error/error.component';
   ],
   exports: [
     NavigationBarComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<div *ngIf="!loading" class="container-fluid">
     <ul *ngIf="imagesService.images.length > 0" class="image-gallery">
         <li *ngFor="let image of imagesService.images, let i = index" (click)="open(i)">
             <img class="img-fluid" [src]=image.image alt="{{image}}">
