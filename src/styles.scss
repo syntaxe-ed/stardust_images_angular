@@ -70,9 +70,14 @@ div, body, p, fieldset {
     border: none;
   }
 
+
   .carousel-item:focus, .modal-body:focus, .modal-dialog:focus, .modal-content:focus, img:focus, .carousel-item, .modal-body, .modal-dialog, .modal-cotent, .img {
     outline: none;
     border: none;
 }
 
 }
+
+// .carousel-inner, .carousel-item {
+//   height: 100%;   
+// }

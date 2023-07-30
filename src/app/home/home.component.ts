@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, HostListener, Output, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { lastValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,9 +11,27 @@ import { environment } from 'src/environments/environment';
 })
 export class HomeComponent {
   images: any[] = [];
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
-    this.getGalleryPages();
+  imageHeight = 0;
+  @Output() eventEmitter = new EventEmitter<any>();
+  @ViewChild('container') elementRef: ElementRef | undefined;
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer, private changeDetector: ChangeDetectorRef) {
+    this.getLandingPageImages();
+    window.addEventListener('resize', (event) => this.resize(event))
   }
+
+  getContainerHeight() {
+    try {
+      return this.elementRef?.nativeElement.offsetHeight;
+    } catch {
+      return 0;
+    }
+  }
+
+  resize(event: any) {
+    this.getLandingPageImages()
+  }
+
+
 
   private readBase64(file: any): Promise<any> {
     const reader = new FileReader();
@@ -29,17 +48,22 @@ export class HomeComponent {
     return future;
   }
 
-  private getGalleryPages() {
-    this.http.get(`${environment.apiUrl}items/landingPage?limit=-1`).subscribe((images: any) => {
-      images.data.forEach((p: any) => {
-        this.http.get(`${environment.apiUrl}assets/${p.image}?quality=50`, { responseType: 'blob' }).subscribe(async (file) => {
-          this.images.push({
-            id: p.id,
-            image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
-            rawImage: await this.readBase64(file),
-          })
-        })
-      })
+  private async getLandingPageImages() {
+  const oldImages = this.images;
+  const newImages: any[] = [];
+   const images: any =  await lastValueFrom(this.http.get(`${environment.apiUrl}items/landingPage?limit=-1`)).catch(() => {
+    this.images = oldImages;
+   });
+   images.data.forEach(async (p: any) => {
+    const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${p.image}?quality=50`, { responseType: 'blob' })).catch(() => {
+      this.images = oldImages;
     })
+    newImages.push({
+      id: p.id,
+      image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
+      rawImage: await this.readBase64(file),
+    })
+    })
+    this.images = newImages;
   }
 }

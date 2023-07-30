@@ -1,16 +1,17 @@
 .CarouselImage {
-	min-width: 100%;
-	max-width: none;
+    width: 100% !important;
 	object-fit: cover;
 	object-position: 0 100%;
-    height: calc(100vh - 110px);
 }
 
+
+
 ngb-slide {
-    max-height: 100vh;
+    height: 100%;
     width: 100vw;
 }
 
 .container-fluid {
     padding: 0;
+    height: 100% !important;
 }
