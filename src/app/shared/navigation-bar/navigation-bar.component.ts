@@ -11,13 +11,19 @@ import { debounceTime} from 'rxjs';
 })
 export class NavigationBarComponent {
   isMenuCollapsed = true;
+  innerWidth = window.innerWidth;
   searchForm = new FormGroup({
     search: new FormControl('')
   });
 
   constructor(private router: Router) {
     this.searchForm.valueChanges.pipe(debounceTime(1000)).subscribe((result) => {
-      this.router.navigate(['search', result.search])
+      this.navigateToSearch();
     })
+    window.addEventListener('resize', () => this.innerWidth = window.innerWidth)
+  }
+
+  navigateToSearch() {
+    this.router.navigate(['search', this.searchForm.controls.search.value]);
   }
 }

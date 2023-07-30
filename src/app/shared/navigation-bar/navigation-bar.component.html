@@ -11,6 +11,12 @@
 
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
 
+        <div class="cart-container" *ngIf="innerWidth < 992">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="35" fill="grey" class="bi bi-bag-fill snipcart-checkout" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+            </svg>
+        </div>
+
         <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 <a class="nav-link" [routerLink]="'/about'" (click)="isMenuCollapsed = true">About</a>
@@ -18,20 +24,18 @@
                 <a class="nav-link" [routerLink]="'/gifts'" (click)="isMenuCollapsed = true">Gifts</a>
                 <a class="nav-link" [href]="'https://stardustimagesblog.wordpress.com/'">Blog</a>
             </ul>
+            <form class="form" [formGroup]="searchForm">
+                <div class="ml-auto">
+                    <input formControlName="search" (keyup.enter)="navigateToSearch()" class="form-control" placeholder="Search" />
+                </div>
+            </form>
+    
         </div>
-
-        <form [formGroup]="searchForm">
-            <div class="ml-auto">
-                <input formControlName="search" class="form-control" placeholder="Search" />
-            </div>
-        </form>
-
-        <div class="cart-container">
+        <div class="cart-container" *ngIf="innerWidth >= 992">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="35" fill="grey" class="bi bi-bag-fill snipcart-checkout" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
             </svg>
-            <span class="snipcart-items-count"></span>
-        </div>
-    
+        </div>    
+        <span class="snipcart-items-count"></span>
     </div>
 </nav>

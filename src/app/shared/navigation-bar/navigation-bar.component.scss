@@ -6,13 +6,29 @@ a {
     margin-left: 10px;
     display: flex;
 
-    .snipcart-items-count {
-        position: absolute;
-        bottom: 10px;
-        right: 5px;
-    }
+    
 }
 
 .navbar {
     margin-bottom: 10px;
+}
+
+.form {
+    margin-left: auto !important;
+}
+
+.navbar-toggler {
+    margin-top: 5px;
+    padding-top: 10px;
+    margin-left: auto;
+}
+
+.snipcart-items-count {
+    position: absolute;
+    top: 50px;
+    right: 5px;
+}
+
+.nav-link {
+    margin-left: 5px;
 }

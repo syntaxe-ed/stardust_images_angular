@@ -3,20 +3,18 @@ footer {
 	font-style: italic;
     font-weight: bold;
     width: 100vw;
-	// max-height: 46px !important;
     padding-top: 10px;
     text-align: center;
 }
 
 .facebook {
-	margin-right: 10px;
+	margin: 0 10px;
 	size: large;
     color: grey;
 }
 
 .instagram {
-	margin-left: 10px;
-	float: right;
+	margin: 0 10px;
     color: grey;
 }
 
@@ -40,10 +38,6 @@ footer {
 	// height: 20px !important;
 	// font-family: 'Times New Roman', Times, serif
 }
-
-// .copyright-container {
-// 	transform: translateY(-10px);
-// }
 
 .text {
 	margin: auto;

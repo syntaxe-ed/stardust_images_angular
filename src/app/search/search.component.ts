@@ -42,7 +42,8 @@ export class SearchComponent {
   open(index: number) {
       const modalRef = this.modalService.open(ImageModalComponent, {
         ariaLabelledBy: 'modal-basic-title', 
-        windowClass: 'imageModal'
+        windowClass: 'imageModal',
+        centered: true
     });
       modalRef.componentInstance.imageIndex = `slide-ngb-slide-${index}`;
   }
