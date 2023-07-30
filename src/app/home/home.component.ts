@@ -27,11 +27,14 @@ export class HomeComponent {
     }
   }
 
+  /*
+    Very hacky way to reload the images on page resize, which will resize the element.
+
+    Need to find out exactly why this is caused so can resize without refreshing content
+  */
   resize(event: any) {
     this.getLandingPageImages()
   }
-
-
 
   private readBase64(file: any): Promise<any> {
     const reader = new FileReader();
