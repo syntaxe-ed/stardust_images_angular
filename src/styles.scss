@@ -8,6 +8,18 @@
     src: url(assets/fonts/bradhitc.ttf) format("opentype");
   }
 
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
 div, body, p, fieldset {
     font-family: 'Bradley Hand ITC' !important;
 }
@@ -17,19 +29,6 @@ div, body, p, fieldset {
 }
 
 .imageModal {
-  // .modal-dialog, .modal-content, .modal-body, .carousel-container {
-  //   // max-height: 90vh;
-  //   // max-width: 100%;
-  // }
-  
-  // .carousel-container {
-  //   // max-height: 90vh;
-  //   // max-width: 100%;
-  // }
-
-  // img {
-  //   max-height: calc(90vh - 32px);
-  // }
 
 .carousel-container {
   background-color: transparent;
