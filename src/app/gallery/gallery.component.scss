@@ -106,8 +106,13 @@ ul {
   position: relative;
 }
 
+@media (min-width: 992px)  {
+  .image-gallery::after {
+    content: "";
+  }
+}
+
 .image-gallery::after {
-  content: "";
   flex-grow: 999;
 }
 
