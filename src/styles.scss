@@ -8,8 +8,12 @@
     src: url(assets/fonts/bradhitc.ttf) format("opentype");
   }
 
-div {
-    font-family: 'Bradley Hand ITC';
+div, body, p, fieldset {
+    font-family: 'Bradley Hand ITC' !important;
+}
+
+.snipcart__font--secondary, .snipcart__font--std, .snipcart__font--subtitle, .snipcart-button-link, .snipcart-payment-form__input, .test-card-hint{
+  font-family: 'Bradley Hand ITC' !important;
 }
 
 .imageModal {
