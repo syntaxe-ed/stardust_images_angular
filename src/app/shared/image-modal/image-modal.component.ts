@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ImageService } from '../services/image.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';

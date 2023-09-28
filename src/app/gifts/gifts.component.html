@@ -4,7 +4,7 @@
         <div class="col col-sm-12 col-lg-5 col-12" *ngFor="let image of categories">
             <div class="imageCard">
                 <a [routerLink]="image.title.toLowerCase()">
-                    <img [src]="image.thumbnail" class="imageCardImage img-" />
+                    <img [src]="image.thumbnail" class="imageCardImage img" />
                     <h1 class="imageCardText">{{image.title}}</h1>
                     <div class="overlay"><span></span></div>
                 </a>

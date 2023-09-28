@@ -72,7 +72,7 @@ export class GalleryComponent {
   private async  getGalleryPages(title: string) {
     const pages: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/galleryPages?limit=-1`));
     const stringToCompare = title.split('%20').join(' ');
-    const galleryPages = pages.data.filter((l: any) => l.parentPage.toLowerCase() === stringToCompare);
+    const galleryPages = pages.data.filter((l: any) => l.parentPage.toLowerCase() === stringToCompare).sort((a: any, b: any) => a.id - b.id);
     galleryPages.forEach(async (p: any) => {
       const file = await lastValueFrom(this.http.get(`${environment.apiUrl}assets/${p.thumbnail}?quality=50`, { responseType: 'blob' }))
       this.galleryPages.push({
