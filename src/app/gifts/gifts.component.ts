@@ -73,7 +73,7 @@ export class GiftsComponent {
   private async getProductCategories(title: string) {
     const pages: any = await lastValueFrom(this.http.get(`${environment.apiUrl}items/productCategories?limit=-1`));
     console.log(pages.data);
-    const categories = pages.data.reduce((acc: any, element: any) => {
+    const categories = pages.data.sort((a: any, b: any) => a.id = b.id).reduce((acc: any, element: any) => {
       if (element.title === 'All') {
         return [element, ...acc];
       }
