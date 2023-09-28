@@ -110,7 +110,8 @@ export class GiftsComponent {
         image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
         rawImage: await this.readBase64(file),
         price: i.price,
-        images: i.images
+        images: i.images.map((i: any) => i.directus_files_id),
+        description: i.description
       })
     })
   }
@@ -126,7 +127,8 @@ export class GiftsComponent {
         image: this.sanitizer.bypassSecurityTrustResourceUrl(await this.readBase64(file)),
         rawImage: await this.readBase64(file),
         price: i.price,
-        images: i.images.map((i: any) => i.directus_files_id)
+        images: i.images.map((i: any) => i.directus_files_id),
+        description: i.description
       })
     })
   }
