@@ -100,7 +100,7 @@ ul {
 }
 
 .image-gallery>li {
-  flex: 1 1 auto;
+  flex: auto;
   /* or flex: auto; */
   height: 300px;
   cursor: pointer;
@@ -114,7 +114,7 @@ ul {
 }
 
 .image-gallery::after {
-  flex-grow: 999;
+  flex-grow: 100;
 }
 
 .image-gallery li img {

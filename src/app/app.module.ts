@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorInterceptor } from './shared/interceptors/http-interceptor.interceptor';
+import { ImageService } from './shared/services/image.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { HttpInterceptorInterceptor } from './shared/interceptors/http-intercept
     SharedModule,
     FontAwesomeModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true}, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,6 +12,7 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { ErrorComponent } from './error/error.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { GiftModalComponent } from './gift-modal/gift-modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,7 +26,7 @@ import { GiftModalComponent } from './gift-modal/gift-modal.component';
     LoadingSpinnerComponent,
     GiftModalComponent
   ],
-  providers: [ImageService],
+
   imports: [
     CommonModule,
     NgbCollapse,
@@ -33,12 +34,13 @@ import { GiftModalComponent } from './gift-modal/gift-modal.component';
     FontAwesomeModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports: [
     NavigationBarComponent,
     FooterComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
   ]
 })
 export class SharedModule { }

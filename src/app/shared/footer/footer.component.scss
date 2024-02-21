@@ -3,7 +3,7 @@ footer {
 	font-style: italic;
     font-weight: bold;
     width: 100vw;
-    padding-top: 10px;
+    padding-top: 1px;
     text-align: center;
 }
 
@@ -37,6 +37,14 @@ footer {
 	font-weight: normal;
 	// height: 20px !important;
 	// font-family: 'Times New Roman', Times, serif
+}
+
+.copyright-logo {
+	opacity: 0.65;
+	height: 12px;
+	margin-right: 3px;
+	margin-bottom: 1px;;
+	// widht: 50px;
 }
 
 .text {
